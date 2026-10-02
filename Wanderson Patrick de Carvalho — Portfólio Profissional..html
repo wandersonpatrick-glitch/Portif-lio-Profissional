@@ -1,0 +1,665 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Wanderson Patrick de Carvalho — Portfólio Profissional</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Zilla+Slab:wght@400;500;600;700&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --graphite:#23201D;
+    --stone:#F4F1EC;
+    --stone-2:#EAE4D8;
+    --ink:#23201D;
+    --ink-soft:#5B564E;
+    --paper:#FBFAF7;
+    --copper:#AD6A2E;
+    --copper-deep:#8C5523;
+    --steel:#3E5C76;
+    --line:#D8D1C3;
+    --on-dark:#F4F1EC;
+    --serif:'Zilla Slab', Georgia, 'Times New Roman', serif;
+    --sans:'IBM Plex Sans', Arial, Helvetica, sans-serif;
+    --mono:'IBM Plex Mono', 'Courier New', monospace;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      --stone:#211E1A; --stone-2:#2A2621; --ink:#EDE8E0; --ink-soft:#B8B1A3;
+      --paper:#191715; --line:#3A3530;
+    }
+  }
+  :root[data-theme="dark"]{
+    --stone:#211E1A; --stone-2:#2A2621; --ink:#EDE8E0; --ink-soft:#B8B1A3;
+    --paper:#191715; --line:#3A3530;
+  }
+  *{ box-sizing:border-box; min-width:0; }
+  html{
+    scroll-behavior:smooth;
+    scroll-padding-top:calc(60px + env(safe-area-inset-top, 0px));
+  }
+  body{
+    margin:0; font-family:var(--sans); color:var(--ink); background:var(--paper); line-height:1.55;
+    padding-bottom:env(safe-area-inset-bottom, 0px);
+  }
+  a{ color:inherit; }
+  img{ max-width:100%; display:block; }
+  .wrap{ max-width:980px; margin:0 auto; padding:0 32px; }
+  h1,h2,h3{ font-family:var(--serif); margin:0; }
+  .kicker{ font-family:var(--mono); font-size:13px; letter-spacing:0.08em; color:var(--copper); }
+
+  nav{ position:sticky; top:0; z-index:50; background:var(--paper); border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top, 0px); }
+  nav .wrap{ display:flex; align-items:center; justify-content:space-between; padding-top:16px; padding-bottom:16px; }
+  nav .brand{ font-family:var(--serif); font-weight:600; font-size:18px; }
+  nav ul{ list-style:none; display:flex; gap:28px; margin:0; padding:0; font-size:14px; font-weight:500; }
+  nav a{ text-decoration:none; color:var(--ink-soft); }
+  nav a:hover{ color:var(--copper-deep); }
+
+  /* ---------- HERO ---------- */
+  header.hero{
+    background:radial-gradient(ellipse 900px 500px at 15% -10%, rgba(173,106,46,0.18), transparent 60%), var(--graphite);
+    color:var(--on-dark);
+    padding:96px 0 150px;
+    position:relative;
+  }
+  .hero-eyebrow{ font-family:var(--mono); font-size:13px; letter-spacing:0.08em; color:#CBAE86; margin-bottom:18px; }
+  header.hero h1{ font-size:clamp(36px,5vw,56px); font-weight:600; line-height:1.08; max-width:14ch; }
+  .role-chips{ margin-top:24px; }
+  .role-chips::after{ content:""; display:table; clear:both; }
+  .chip{ float:left; border:1px solid rgba(244,241,236,0.28); color:#E7E1D6; font-size:14px; padding:7px 14px; border-radius:3px; margin:0 8px 8px 0; }
+  .hero-lede{ max-width:60ch; margin-top:22px; font-size:17px; color:#D7D1C5; }
+  .hero-cta{ margin-top:34px; }
+  .hero-cta::after{ content:""; display:table; clear:both; }
+  .btn{ float:left; font-family:var(--sans); font-weight:600; font-size:15px; padding:13px 24px; text-decoration:none; border-radius:3px; border:1px solid transparent; margin:0 16px 10px 0; cursor:pointer; }
+  .btn-primary{ background:var(--copper); color:#fff; }
+  .btn-primary:hover{ background:var(--copper-deep); }
+  .btn-ghost{ border-color:rgba(244,241,236,0.4); color:var(--on-dark); background:none; }
+  .btn-ghost:hover{ border-color:var(--on-dark); }
+
+  /* floating overlap stat card: straddles hero + next section */
+  .floating-wrap{ position:relative; z-index:5; margin-top:-96px; margin-bottom:-24px; }
+  .floating-card{
+    background:var(--paper);
+    border:1px solid var(--line);
+    box-shadow:0 24px 48px -16px rgba(35,32,29,0.28);
+    padding:30px 36px;
+    position:relative;
+  }
+  .floating-card::before{
+    content:"";
+    position:absolute;
+    top:10px; left:10px; right:-10px; bottom:-10px;
+    background:var(--copper);
+    z-index:-1;
+  }
+  .panel::after{ content:""; display:table; clear:both; }
+  .panel .stat{ float:left; width:23.5%; margin-right:2%; }
+  .panel .stat:nth-child(4n){ margin-right:0; }
+  .panel .stat .n{ font-family:var(--mono); font-size:27px; color:var(--ink); font-weight:500; }
+  .panel .stat .l{ font-size:12.5px; color:var(--ink-soft); margin-top:4px; }
+
+  /* ---------- SECTION SHELL ---------- */
+  section{ padding:84px 0; }
+  section#trajetoria{ padding-top:56px; }
+  section.alt{ background:var(--stone); }
+  .section-head{ margin-bottom:48px; max-width:62ch; }
+  .section-head .kicker{ display:block; margin-bottom:10px; }
+  .section-head h2{ font-size:clamp(26px,3.4vw,34px); font-weight:600; }
+  .section-head p{ color:var(--ink-soft); margin-top:12px; font-size:16px; }
+
+  /* ---------- ACCORDION (shared) ---------- */
+  .acc-item{ border-bottom:1px solid var(--line); }
+  .acc-trigger{
+    width:100%; text-align:left; background:none; border:none; cursor:pointer;
+    padding:20px 0; display:block; font-family:var(--sans); color:var(--ink);
+  }
+  .acc-trigger::after{ content:""; display:table; clear:both; }
+  .acc-row{ float:left; width:calc(100% - 36px); }
+  .acc-plus{
+    float:right; width:26px; height:26px; border:1px solid var(--line); border-radius:50%;
+    position:relative; margin-top:4px; flex-shrink:0;
+  }
+  .acc-plus::before, .acc-plus::after{
+    content:""; position:absolute; background:var(--copper-deep);
+    top:50%; left:50%; transform:translate(-50%,-50%);
+  }
+  .acc-plus::before{ width:10px; height:2px; }
+  .acc-plus::after{ width:2px; height:10px; transition:transform 0.25s ease; }
+  .acc-item.open .acc-plus::after{ transform:translate(-50%,-50%) scaleY(0); }
+  .acc-body{ overflow:hidden; max-height:0; transition:max-height 0.3s ease; }
+  .acc-item.open .acc-body{ max-height:600px; }
+  .acc-body-inner{ padding:0 0 22px; }
+
+  /* ---------- TIMELINE / TRAJETORIA ---------- */
+  .t-period{ font-family:var(--mono); font-size:13px; color:var(--copper-deep); margin-bottom:5px; }
+  .t-role{ font-family:var(--serif); font-weight:600; font-size:19px; }
+  .t-company{ font-size:14.5px; color:var(--ink-soft); margin-top:2px; }
+  .t-desc{ font-size:15px; color:var(--ink); max-width:62ch; }
+
+  /* ---------- CASES ---------- */
+  .case{ position:relative; margin-bottom:40px; }
+  .case-inner{
+    background:var(--paper); border:1px solid var(--line);
+    padding:30px 34px; position:relative; z-index:1;
+  }
+  .case::before{
+    content:""; position:absolute; top:12px; left:12px; right:-12px; bottom:-12px;
+    background:var(--stone-2); border:1px solid var(--line); z-index:0;
+  }
+  .case .tag{ font-family:var(--mono); font-size:12px; color:var(--copper-deep); letter-spacing:0.04em; margin-bottom:10px; }
+  .case h3{ font-size:21px; font-weight:600; line-height:1.3; max-width:46ch; }
+  .case-headline-metric{ font-family:var(--mono); font-size:15px; color:var(--ink); margin-top:12px; }
+  .case-headline-metric b{ color:var(--copper-deep); font-size:17px; }
+  .case-toggle{
+    margin-top:16px; background:none; border:none; cursor:pointer; padding:0;
+    font-family:var(--sans); font-size:13.5px; font-weight:600; color:var(--steel);
+  }
+  .case-body{ overflow:hidden; max-height:0; transition:max-height 0.3s ease; }
+  .case-body-inner{ padding-top:20px; border-top:1px solid var(--line); margin-top:20px; }
+  .case .ctx{ color:var(--ink-soft); font-size:14.5px; max-width:62ch; }
+  .case-metrics{ margin-top:20px; }
+  .case-metrics::after{ content:""; display:table; clear:both; }
+  .case-metrics .m{ float:left; width:47%; margin-right:6%; margin-bottom:16px; }
+  .case-metrics .m:nth-child(2n){ margin-right:0; }
+  .case-metrics .m .n{ font-family:var(--mono); font-size:20px; color:var(--ink); font-weight:500; }
+  .case-metrics .m .l{ font-size:12.5px; color:var(--ink-soft); margin-top:2px; }
+
+  /* ---------- SKILLS ---------- */
+  .skill-grid::after{ content:""; display:table; clear:both; }
+  .skill-group{ float:left; width:47%; margin-right:6%; margin-bottom:36px; }
+  .skill-group:nth-child(2n){ margin-right:0; }
+  .skill-group h3{ font-size:15px; font-family:var(--sans); font-weight:700; color:var(--ink); margin-bottom:14px; padding-bottom:10px; border-bottom:2px solid var(--copper); display:inline-block; }
+  .tag-row::after{ content:""; display:table; clear:both; }
+  .tag-row .tag{ float:left; font-size:13.5px; background:var(--stone-2); color:var(--ink); padding:7px 12px; border-radius:3px; margin:0 8px 8px 0; }
+
+  /* ---------- FORMACAO ---------- */
+  .ed-grid::after{ content:""; display:table; clear:both; }
+  .ed-card{ float:left; width:47%; margin-right:6%; margin-bottom:20px; border-left:3px solid var(--copper); padding:4px 0 4px 20px; }
+  .ed-card:nth-child(2n){ margin-right:0; }
+  .ed-card h3{ font-size:17px; font-weight:600; }
+  .ed-card p{ margin:4px 0 0; color:var(--ink-soft); font-size:14.5px; }
+  .course-list{ margin-top:36px; }
+  .course-list::after{ content:""; display:table; clear:both; }
+  .course-list .tag{ float:left; font-size:13.5px; background:var(--stone-2); color:var(--ink); padding:7px 12px; border-radius:3px; margin:0 8px 8px 0; }
+
+  /* ---------- CONTACT / FOOTER ---------- */
+  footer{ background:var(--graphite); color:var(--on-dark); padding:72px 0 40px; }
+  footer h2{ color:var(--on-dark); font-size:clamp(26px,3.4vw,34px); font-weight:600; max-width:16ch; }
+  footer .lede{ color:#C9C2B3; max-width:52ch; margin-top:14px; font-size:16px; }
+  .contact-grid{ margin-top:40px; border-top:1px solid rgba(244,241,236,0.16); padding-top:32px; }
+  .contact-grid::after{ content:""; display:table; clear:both; }
+  .contact-grid > *{ float:left; width:46%; margin-right:8%; margin-bottom:28px; text-decoration:none; }
+  .contact-grid > *:nth-child(2n){ margin-right:0; }
+  .contact-grid .l{ font-family:var(--mono); font-size:12px; color:#A79E8E; margin-bottom:6px; }
+  .contact-grid .v{ font-size:15px; color:var(--on-dark); font-weight:500; overflow-wrap:anywhere; }
+  .contact-grid a:hover .v{ color:var(--copper); }
+  .fine{ margin-top:48px; font-size:12.5px; color:#7F7768; }
+
+  @media (max-width:760px){
+    nav ul{ display:none; }
+    .wrap{ padding:0 20px; }
+    .panel .stat{ width:48%; margin-right:0; margin-bottom:18px; }
+    .panel .stat:nth-child(2n){ }
+    .floating-card{ padding:24px 22px; }
+    .skill-group, .ed-card, .contact-grid > *{ float:none; width:100%; margin-right:0; }
+    .case-metrics .m{ width:100%; margin-right:0; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="wrap">
+    <div class="brand">Wanderson Patrick</div>
+    <ul>
+      <li><a href="#trajetoria">Trajetória</a></li>
+      <li><a href="#resultados">Resultados</a></li>
+      <li><a href="#habilidades">Habilidades</a></li>
+      <li><a href="#formacao">Formação</a></li>
+      <li><a href="#contato">Contato</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-eyebrow">Portfólio profissional</div>
+    <h1>Wanderson Patrick de Carvalho</h1>
+    <div class="role-chips">
+      <span class="chip">Controladoria &amp; Custos</span>
+      <span class="chip">Compras e Suprimentos</span>
+      <span class="chip">Logística</span>
+      <span class="chip">Produção e Operações</span>
+    </div>
+    <p class="hero-lede">
+      Mais de 20 anos estruturando áreas de compras, custos e produção em empresas de
+      mineração, construção, transporte e indústria — transformando controle de dados
+      em decisões que reduzem custo e sustentam crescimento.
+    </p>
+    <div class="hero-cta">
+      <a class="btn btn-primary" href="mailto:wanderson.patrick@yahoo.com.br">Entrar em contato</a>
+      <a class="btn btn-ghost" href="http://linkedin.com/in/wanderson-patrick-de-carvalho" target="_blank" rel="noopener">Ver LinkedIn</a>
+    </div>
+  </div>
+</header>
+
+<div class="floating-wrap">
+  <div class="wrap">
+    <div class="floating-card">
+      <div class="panel">
+        <div class="stat"><div class="n">20+</div><div class="l">anos de experiência</div></div>
+        <div class="stat"><div class="n">7</div><div class="l">empresas, 4 setores</div></div>
+        <div class="stat"><div class="n">2</div><div class="l">setores de compras estruturados do zero</div></div>
+        <div class="stat"><div class="n">2</div><div class="l">orçamentos corporativos criados desde a base</div></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section id="trajetoria">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Trajetória</span>
+      <h2>Da expedição à gestão de produção e custos</h2>
+      <p>Comecei na logística, conectando produção e cliente, e fui assumindo responsabilidade
+      crescente sobre compras, estoque, orçamento e, mais recentemente, custos industriais.</p>
+    </div>
+
+    <div class="acc-group" id="timeline-acc">
+
+      <div class="acc-item open">
+        <button class="acc-trigger">
+          <div class="acc-row">
+            <div class="t-period">05/2023 — 09/2026</div>
+            <div class="t-role">Comprador</div>
+            <div class="t-company">Real Ville Urbanismo · Lavras/MG</div>
+          </div>
+          <span class="acc-plus"></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="t-desc">Reestruturei os processos de compras e suprimentos, expandi a base de
+            fornecedores e otimizei o uso do ERP (Sienge/Protheus), com gestão de custos de
+            manutenção de máquinas e veículos via KPI's e dashboards em Power BI.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <div class="acc-row">
+            <div class="t-period">08/2017 — 10/2022</div>
+            <div class="t-role">Gerente de Produção e Operações Pleno</div>
+            <div class="t-company">Indústria de Cal SN Ltda. · Lavras/MG</div>
+          </div>
+          <span class="acc-plus"></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="t-desc">Gestão completa da produção de brita e concreto de uma unidade de
+            negócio, com acompanhamento de PCP, fechamento mensal de custos (contas fixas e
+            variáveis) e desenvolvimento do orçamento anual.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <div class="acc-row">
+            <div class="t-period">04/2012 — 07/2017</div>
+            <div class="t-role">Gerente de Compras</div>
+            <div class="t-company">Indústria de Cal SN Ltda. · Lavras/MG</div>
+          </div>
+          <span class="acc-plus"></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="t-desc">Criei e estruturei o setor de Compras e Suprimentos do zero,
+            implementei o ERP Totvs para cotações e aprovações, e desenvolvi o primeiro
+            orçamento corporativo da empresa por centro de custo.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <div class="acc-row">
+            <div class="t-period">09/2011 — 03/2012</div>
+            <div class="t-role">Gerente Administrativo</div>
+            <div class="t-company">Canaan Serviços de Encadernação Ltda.</div>
+          </div>
+          <span class="acc-plus"></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="t-desc">Gestão da área financeira, liberação de pedidos de compra e
+            controle de estoques, com criação da gestão orçamentária da empresa para análise
+            da Diretoria.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <div class="acc-row">
+            <div class="t-period">08/2010 — 06/2011</div>
+            <div class="t-role">Administrador / Supply Chain</div>
+            <div class="t-company">Ciclope Componentes Automotivos Ltda.</div>
+          </div>
+          <span class="acc-plus"></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="t-desc">Controle de inventário de matérias-primas e produtos acabados em
+            ambiente de produção "Just in Time", com emissão fiscal e apoio à logística de
+            entregas.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <div class="acc-row">
+            <div class="t-period">11/2008 — 05/2010</div>
+            <div class="t-role">Supervisor Administrativo</div>
+            <div class="t-company">Roma Transportes</div>
+          </div>
+          <span class="acc-plus"></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="t-desc">Gestão de contas a receber, orçamento e indicadores de desempenho,
+            com negociação de contratos com fornecedores e condução de reuniões gerenciais
+            mensais.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <div class="acc-row">
+            <div class="t-period">12/2005 — 08/2008</div>
+            <div class="t-role">Supervisor Operacional / Administrativo</div>
+            <div class="t-company">Cesa S/A</div>
+          </div>
+          <span class="acc-plus"></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="t-desc">Supervisão de expedição e frota em operação para indústria de
+            cimento, com controle fiscal, desenvolvimento de KPI's de estoque e acompanhamento
+            do escoamento da produção.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <div class="acc-row">
+            <div class="t-period">11/2003 — 12/2005</div>
+            <div class="t-role">Analista de Compras / Operador de Transportes</div>
+            <div class="t-company">Cesa S/A</div>
+          </div>
+          <span class="acc-plus"></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="t-desc">Implementação do setor de compras na unidade de negócio, cadastro
+            de fornecedores e insumos, e programação de carregamento com uso do SAP.</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="acc-item">
+        <button class="acc-trigger">
+          <div class="acc-row">
+            <div class="t-period">11/1996 — 10/2003</div>
+            <div class="t-role">Vendedor / Balconista</div>
+            <div class="t-company">Casa Carvalho</div>
+          </div>
+          <span class="acc-plus"></span>
+        </button>
+        <div class="acc-body">
+          <div class="acc-body-inner">
+            <div class="t-desc">Atendimento ao cliente, vendas e reposição — início de carreira,
+            base da experiência comercial e administrativa.</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="resultados">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Resultados</span>
+      <h2>Um case de ponta a ponta: do custo ao cliente</h2>
+      <p>Da estruturação de setores inteiros à viabilidade econômica de um produto novo.</p>
+    </div>
+
+    <div class="case">
+      <div class="case-inner">
+        <div class="tag">Desenvolvimento de produto · Indústria de Cal SN</div>
+        <h3>Brita para lastro ferroviário: de zero a fornecimento aprovado</h3>
+        <div class="case-headline-metric">Retorno do investimento em <b>~2 meses</b></div>
+        <button class="case-toggle" data-label-open="Ver detalhes ↓" data-label-close="Ocultar detalhes ↑">Ver detalhes ↓</button>
+        <div class="case-body">
+          <div class="case-body-inner">
+            <p class="ctx">Um cliente do setor ferroviário precisava de uma granulometria que a
+            empresa não produzia. Conduzi a viabilidade econômica completa — desmonte,
+            beneficiamento, mão de obra, encargos e escoamento — liderei as adequações na
+            planta e acompanhei a validação granulométrica e química em laboratório externo
+            indicado pelo próprio cliente, até a aprovação e início do fornecimento.</p>
+            <div class="case-metrics">
+              <div class="m"><div class="n">500–2.000</div><div class="l">toneladas/mês (volume projetado)</div></div>
+              <div class="m"><div class="n">20–25%</div><div class="l">margem sobre a venda</div></div>
+              <div class="m"><div class="n">R$ 10.000</div><div class="l">investimento total na adequação</div></div>
+              <div class="m"><div class="n">~2 meses</div><div class="l">prazo de retorno do investimento</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-inner">
+        <div class="tag">Estruturação de área · 2 empresas</div>
+        <h3>Setores de Compras e Suprimentos construídos do zero</h3>
+        <div class="case-headline-metric"><b>2</b> setores estruturados, <b>3</b> ERPs implementados</div>
+        <button class="case-toggle" data-label-open="Ver detalhes ↓" data-label-close="Ocultar detalhes ↑">Ver detalhes ↓</button>
+        <div class="case-body">
+          <div class="case-body-inner">
+            <p class="ctx">Na Indústria de Cal SN e em outras empresas, estruturei o setor de
+            compras onde ele não existia: montagem do almoxarifado, layout, contratação e
+            treinamento da equipe, e desenvolvimento do sistema de compras junto à área de
+            TI, usando ERPs como Totvs, Sienge e Protheus.</p>
+            <div class="case-metrics">
+              <div class="m"><div class="n">2</div><div class="l">setores estruturados do zero</div></div>
+              <div class="m"><div class="n">3</div><div class="l">ERPs implementados/otimizados</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="case">
+      <div class="case-inner">
+        <div class="tag">Controle orçamentário · 2 empresas</div>
+        <h3>Primeiro orçamento corporativo, por centro de custo</h3>
+        <div class="case-headline-metric"><b>2</b> orçamentos criados desde a base</div>
+        <button class="case-toggle" data-label-open="Ver detalhes ↓" data-label-close="Ocultar detalhes ↑">Ver detalhes ↓</button>
+        <div class="case-body">
+          <div class="case-body-inner">
+            <p class="ctx">Desenvolvi o primeiro budget formal em mais de uma empresa, separando
+            contas fixas e variáveis por centro de custo, e passei a fazer o fechamento
+            mensal e a auditoria dos inventários que sustentam essas contas.</p>
+            <div class="case-metrics">
+              <div class="m"><div class="n">2</div><div class="l">orçamentos criados desde a base</div></div>
+              <div class="m"><div class="n">Mensal</div><div class="l">fechamento de custos fixos e variáveis</div></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section id="habilidades">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Habilidades</span>
+      <h2>Ferramentas e competências</h2>
+    </div>
+    <div class="skill-grid">
+      <div class="skill-group">
+        <h3>Controladoria &amp; Custos</h3>
+        <div class="tag-row">
+          <span class="tag">Custeio industrial</span>
+          <span class="tag">Fechamento mensal de custos</span>
+          <span class="tag">Orçamento corporativo (budget)</span>
+          <span class="tag">Auditoria de inventários</span>
+          <span class="tag">Indicadores de desempenho (KPI's)</span>
+          <span class="tag">Viabilidade econômica de produtos</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Compras, Suprimentos &amp; Logística</h3>
+        <div class="tag-row">
+          <span class="tag">Estruturação de setor de compras</span>
+          <span class="tag">Negociação com fornecedores</span>
+          <span class="tag">Gestão de estoque e almoxarifado</span>
+          <span class="tag">Logística de entrega</span>
+          <span class="tag">Controle de frota</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Produção &amp; Operações</h3>
+        <div class="tag-row">
+          <span class="tag">PCP</span>
+          <span class="tag">Gestão de equipes multidisciplinares</span>
+          <span class="tag">Melhoria contínua</span>
+          <span class="tag">6 Sigma · PDCA · Ishikawa</span>
+          <span class="tag">Scrum · Lean · Kanban</span>
+        </div>
+      </div>
+      <div class="skill-group">
+        <h3>Sistemas &amp; Dados</h3>
+        <div class="tag-row">
+          <span class="tag">Excel avançado (tabelas dinâmicas)</span>
+          <span class="tag">Power BI</span>
+          <span class="tag">SAP</span>
+          <span class="tag">Totvs</span>
+          <span class="tag">Sienge</span>
+          <span class="tag">Protheus</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="alt" id="formacao">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Formação</span>
+      <h2>Base acadêmica em gestão e controladoria</h2>
+    </div>
+    <div class="ed-grid">
+      <div class="ed-card">
+        <div class="t-period">Concluído em 12/2006</div>
+        <h3>Pós-Graduação em Controladoria e Auditoria</h3>
+        <p>FADMINAS — Faculdades Integradas Adventistas de Minas Gerais</p>
+      </div>
+      <div class="ed-card">
+        <div class="t-period">Concluído em 06/2004</div>
+        <h3>Graduação em Administração de Empresas</h3>
+        <p>Faculdade Presbiteriana Gammon — Lavras/MG</p>
+      </div>
+    </div>
+    <div class="course-list">
+      <span class="tag">Excel Avançado — SENAC</span>
+      <span class="tag">Inovação em Processos — Iconee Treinamentos</span>
+      <span class="tag">Mineração — Metso</span>
+      <span class="tag">Análise e Planejamento Financeiro — SEBRAE</span>
+      <span class="tag">Chefia de Pessoal — SENAC</span>
+      <span class="tag">Técnicas de Venda — SEBRAE</span>
+    </div>
+  </div>
+</section>
+
+<footer id="contato">
+  <div class="wrap">
+    <span class="kicker" style="color:#CBAE86;">Contato</span>
+    <h2>Vamos conversar sobre a próxima etapa da sua operação?</h2>
+    <p class="lede">Disponível para novas oportunidades em Controladoria, Custos, Compras e
+    Produção Industrial, em Lavras/MG e região.</p>
+    <div class="contact-grid">
+      <a href="mailto:wanderson.patrick@yahoo.com.br">
+        <div class="l">E-mail</div>
+        <div class="v">wanderson.patrick@yahoo.com.br</div>
+      </a>
+      <a href="tel:+5535988344827">
+        <div class="l">Telefone</div>
+        <div class="v">(35) 98834-4827</div>
+      </a>
+      <a href="http://linkedin.com/in/wanderson-patrick-de-carvalho" target="_blank" rel="noopener">
+        <div class="l">LinkedIn</div>
+        <div class="v">/wanderson-patrick-de-carvalho</div>
+      </a>
+      <div>
+        <div class="l">Localização</div>
+        <div class="v">Lavras, Minas Gerais</div>
+      </div>
+    </div>
+    <div class="fine">Wanderson Patrick de Carvalho — Portfólio profissional.</div>
+  </div>
+</footer>
+
+<script>
+  function setupAccordion(itemSelector, triggerSelector, bodySelector){
+    document.querySelectorAll(itemSelector).forEach(function(item){
+      var trigger = item.querySelector(triggerSelector);
+      var body = item.querySelector(bodySelector);
+      if(!trigger || !body) return;
+      if(item.classList.contains('open')){
+        body.style.maxHeight = body.scrollHeight + 'px';
+      }
+      trigger.addEventListener('click', function(){
+        var isOpen = item.classList.contains('open');
+        if(isOpen){
+          body.style.maxHeight = '0px';
+          item.classList.remove('open');
+        } else {
+          body.style.maxHeight = body.scrollHeight + 'px';
+          item.classList.add('open');
+        }
+      });
+    });
+  }
+  setupAccordion('.acc-item', '.acc-trigger', '.acc-body');
+
+  // Case study toggles (independent markup, same pattern)
+  document.querySelectorAll('.case').forEach(function(caseEl){
+    var btn = caseEl.querySelector('.case-toggle');
+    var body = caseEl.querySelector('.case-body');
+    if(!btn || !body) return;
+    btn.addEventListener('click', function(){
+      var isOpen = caseEl.classList.contains('open');
+      if(isOpen){
+        body.style.maxHeight = '0px';
+        caseEl.classList.remove('open');
+        btn.textContent = btn.getAttribute('data-label-open');
+      } else {
+        body.style.maxHeight = body.scrollHeight + 'px';
+        caseEl.classList.add('open');
+        btn.textContent = btn.getAttribute('data-label-close');
+      }
+    });
+  });
+</script>
+
+</body>
+</html>
